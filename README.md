@@ -57,3 +57,34 @@ Tant que Vraie
     Fin si
 Fin Tant que
 ```
+
+### Programme Arduino réception
+
+```c++
+
+// Import de la bibliothèque IRemote.h
+#include <IRremote.h> 
+ 
+// RECV_PIN = Port Pin
+int RECV_PIN = 2; 
+ 
+// Définit RECV_PIN (2) comme port de réception du signal
+IRrecv irrecv(RECV_PIN);
+ 
+decode_results results;
+ 
+void setup()
+{
+  Serial.begin(9600);
+  irrecv.enableIRIn(); // Démarre le receveur
+}
+
+void loop() {
+  if (irrecv.decode(&results)) { // Si le décodage (irrecv.decode(&results)) est true
+    Serial.println(results.value, HEX); // Affichage de la valeur du signal reçue décodée
+    irrecv.resume(); // Initialise irrcev pour la prochaine valeur
+    delay(30); // Ajout d'un délai de 30 milliseconde
+  }
+}
+
+``` 
