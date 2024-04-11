@@ -13,6 +13,34 @@ Tant que Vraie
 Fin tant que
 ```
 
+### Programme Arduino émission
+
+Nous avons remarquer avec mon binôme, que l'envoi continu d'un signal infrarouge n'était pas détécté par le récepteur KY-022.
+Nous avons donc décider d'opter pour une autre solution, l'envoi très rapide d'un signal intermitant, de l'ordre d'une dizaine de millisecondes.
+En opérant ces changement dans le code nous constatons, que désormais, le signal émis par KY-005 est bien reçue et traité par KY-022.
+```c++
+
+int Led = 3;
+ 
+void setup ()
+{
+  pinMode (Led, OUTPUT); // Déclaration de la broche de sortie LED
+
+}
+
+/*  La LED va envoyer un signal infrarouge quelconque,
+*   pendant un laps de temps très courts (20 millisecondes).
+*/
+void loop () //Boucle de programme principale
+{
+  digitalWrite (Led, HIGH); 
+  delay(20); // la LED est activée pendant 20 millisecondes.
+  digitalWrite (Led, LOW);
+  delay(20); // La LED se déstactive pendant 20 millisecondes.
+}
+
+```
+
 ### Algo récépeteur
 ```
 activation <--- 0
